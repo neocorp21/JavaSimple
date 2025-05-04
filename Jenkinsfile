@@ -8,12 +8,15 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                sh './mvnw clean install'  // Para usar Maven Wrapper
-                // sh 'mvn clean install'  // Si tienes Maven instalado
-            }
-        }
+       stage('Build') {
+           steps {
+               script {
+                   sh 'chmod +x ./mvnw'
+                   sh './mvnw clean install'
+               }
+           }
+       }
+
 
         stage('Test') {
             steps {
